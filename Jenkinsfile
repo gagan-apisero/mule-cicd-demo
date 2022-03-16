@@ -11,6 +11,15 @@ steps {
 echo 'Munit test case'
 }
 }
+stage('Updating pom version') {
+when{
+branch "qa"
+}
+steps {
+echo 'working on it'
+echo "only for qa"
+}
+}
 stage('Deploy CloudHub') {
 environment {
         ANYPOINT_CREDENTIALS = credentials('anypoint.credentials') 
