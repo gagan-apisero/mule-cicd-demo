@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="mule-cicd-demo-test-suite.xml" />
+	<munit:test name="mule-cicd-demo-test-suite-mule-cicd-demoFlowTest" doc:id="e70991ce-c488-4901-bfb0-1e0248538d46" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="c96b932d-887d-4b25-971f-02e21b0fcf18" name="mule-cicd-demo-test-suiteFlow"/>
+			<flow-ref doc:name="Flow-ref to mule-cicd-demoFlow" doc:id="c2d4ff52-0216-48e1-8fa3-c7e98b5105b5" name="mule-cicd-demoFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="18bf97c1-cf47-4d1c-9f8f-cda22b188d7e" expression="#[payload]" is="#[MunitTools::notNullValue()]" message="Payload is null"/>
+		</munit:validation>
+	</munit:test>
+	<flow name="mule-cicd-demo-test-suiteFlow" doc:id="d8551e2a-e072-4df5-9bfb-2838456c0c49" >
+		<munit:set-event doc:name="Set Event" doc:id="53804be6-b6b5-41a7-8283-df68fbaa04f8" >
+			<munit:attributes value="#[{uriParams:{country:'India'}}]" />
+		</munit:set-event>
+	</flow>
+	<munit:test name="mule-cicd-demo-test-suite-mule-cicd-demoFlowTest1" doc:id="2f28d9f5-5e8c-4b32-94c2-4d0e9846712e" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="fa591cc7-f449-4e8f-91cd-071a4e03a8de" name="mule-cicd-demo-test-suiteFlow"/>
+			<flow-ref doc:name="Flow-ref to mule-cicd-demoFlow" doc:id="97157eb6-bae7-4b66-8e9e-d955637f8104" name="mule-cicd-demoFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="f768af2a-b86e-4aaa-ac4a-189fce8d3d8e" expression="#[payload]" is="#[MunitTools::withMediaType('application/json')]" message="Invalid Media Type"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mule-cicd-demo-test-suite-mule-cicd-demoFlowTest2" doc:id="8f1584ec-ba0d-4975-845e-0f7c9b833b35" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="16d1de9e-7f0c-4552-8b58-686f66b8d6d5" name="mule-cicd-demo-test-suiteFlow"/>
+			<flow-ref doc:name="Flow-ref to mule-cicd-demoFlow" doc:id="d203c0ba-ed95-41b3-9c93-63258f21f90c" name="mule-cicd-demoFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="ebc89d58-95a8-4d68-8444-75333f5957f7" is="#[MunitTools::equalTo(200)]" expression="#[payload.statusCode]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
