@@ -13,11 +13,11 @@ echo 'Munit test case'
 }
 stage('Updating pom version') {
 when{
-branch "qa"
+branch 'qa'
 }
 steps {
 echo 'working on it'
-echo only for "qa"
+echo 'only for qa'
 }
 }
 stage('Deploy CloudHub') {
