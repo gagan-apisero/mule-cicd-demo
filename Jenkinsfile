@@ -11,9 +11,13 @@ steps {
 echo 'Munit test case'
 }
 }
-stage('Update the pom version') {
+stage('Updating pom version') {
+when{
+branch "qa"
+}
 steps {
 echo 'working on it'
+echo only for "qa"
 }
 }
 stage('Deploy CloudHub') {
