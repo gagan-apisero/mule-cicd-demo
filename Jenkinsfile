@@ -8,7 +8,7 @@ bat 'mvn clean install'
 }
 stage('Munit test') {
 steps {
-echo 'Munit test case'
+echo 'Munit test not implemented yet'
 }
 }
 stage('Updating pom version') {
