@@ -18,6 +18,7 @@ branch 'qa'
 steps {
 echo 'working on it'
 echo 'only for qa'
+echo 'made the repo private'
 }
 }
 stage('Deploy CloudHub') {
