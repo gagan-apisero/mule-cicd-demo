@@ -26,7 +26,7 @@ environment {
         ANYPOINT_CREDENTIALS = credentials('anypoint.credentials') 
         ANYPOINT_CLIENT_ID = credentials('client_id')
         ANYPOINT_CLIENT_SECRET = credentials('client_secret') 
-        BRANCH_NAME = 'qa'
+        BRANCH_NAME = "${env.GIT_BRANCH}"
       }
 steps {
 echo 'Deploying mule project due to the latest code commit.'
