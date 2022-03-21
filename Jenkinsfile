@@ -4,7 +4,7 @@ pipeline {
   environment {
 			//this is the anypoint userID
 			APP_NAME = 'jenkinsCICDTestAPI'
-	  		APP = 'jenkinsCICDTestAPI-%timeStamp%'
+	  		APP = "jenkinsCICDTestAPI-'${timeStamp}'"
 			
 	}
   stages {
