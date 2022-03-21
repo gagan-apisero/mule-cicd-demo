@@ -43,11 +43,11 @@ pipeline {
             }
 			steps {
 				script{
-                        if(env.GIT_BRANCH == "develop")  {
+                        if(env.GIT_BRANCH == "dev")  {
                             
                             echo 'Deploying mule project due to the latest code commits in Dev branch…'
                             echo 'Deploying to the Development environment.'
-                            bat 'mvn package deploy -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=%APP_NAME%-develop'
+                            bat 'mvn package deploy -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=%APP_NAME%-dev'
                         }
                         
                         else if(env.GIT_BRANCH == "qa")  {
