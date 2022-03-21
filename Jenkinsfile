@@ -2,7 +2,7 @@ def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZo
 pipeline {
   agent any
   environment {
-			//app name
+			//app-name
 			APP_NAME = 'jenkinsCICDTestAPI'
 	  		APP = "jenkinsCICDTestAPI-${timeStamp}"
 			
