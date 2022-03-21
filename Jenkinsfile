@@ -18,6 +18,10 @@ pipeline {
 				echo "${timeStamp}"
 				echo "GIT_COMMIT : '${env.GIT_COMMENT}'" 
 				bat 'mvn clean package -Djar.name=%APP%'
+                bat 'git checkout ${env.GIT_BRANCH}'
+                bat 'git add target\\%APP%-mule-application.jar'
+                bat 'git commit -m "[skip ci] adding jar to target"'
+                bat 'git push'
 				
 			}
 		}
@@ -27,6 +31,7 @@ pipeline {
             script{
                 if("SUCCESS".equals(currentBuild.previousBuild.result)){
                     bat 'COPY %WORKSPACE%\\target\\*.jar C:\\gagan\\target /Y'
+
                 }
             }
         }
