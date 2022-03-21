@@ -14,6 +14,7 @@ pipeline {
 					stdout = bat( script: 'git.exe log -1 --pretty="format:Commit Message: %%s% %%%n%% Author: %%an% %%n% Date: %%aD%"' ,returnStdout: true).trim()
 					env.GIT_COMMENT = (stdout.readLines().drop(1).join("\n"))
 				}
+				echo "'${timeStamp}'"
 				echo "GIT_COMMIT : '${env.GIT_COMMENT}'" 
 				bat 'mvn clean package -Djar.name=%APP%'
 				
