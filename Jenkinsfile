@@ -20,7 +20,7 @@ pipeline {
 				bat 'mvn clean package -Djar.name=%APP%'
                 bat "git checkout ${env.GIT_BRANCH}"
                 bat 'git add target\\%APP%-mule-application.jar'
-                bat 'git commit -m "[skip ci] adding jar to github"'
+                bat 'git commit -m "[skip ci] upload jar to github"'
                 bat 'git push'
 				
 			}
