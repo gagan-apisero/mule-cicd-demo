@@ -51,7 +51,7 @@ pipeline {
                             
                             echo 'Deploying mule project due to the latest code commits in Dev branch…'
                             echo 'Deploying to the Development environment.'
-                            bat 'mvn deploy -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=%APP_NAME%-dev -Djar.name=%APP_NAME% -Dmule.artifact=%WORKSPACE%\\target\\%APP%-mule-application.jar'
+                            bat 'mvn deploy -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=%APP_NAME%-dev -Djar.name=%APP% -Dmule.artifact=%WORKSPACE%\\target\\%APP%-mule-application.jar'
                         }
                         
                         else if(env.GIT_BRANCH == "qa")  {
@@ -64,7 +64,7 @@ pipeline {
                             
                             timeout(time: 30, unit: 'MINUTES'){
                                 input "Deploy to QA?" }
-                                bat 'mvn deploy -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=%APP_NAME%-qa -Djar.name=%APP_NAME% -Dmule.artifact=%WORKSPACE%\\target\\%APP%-mule-application.jar'
+                                bat 'mvn deploy -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=%APP_NAME%-qa -Djar.name=%APP% -Dmule.artifact=%WORKSPACE%\\target\\%APP%-mule-application.jar'
                         }
                         
                         else if(env.GIT_BRANCH == "origin/release")  {
@@ -77,7 +77,7 @@ pipeline {
                             
                             timeout(time: 30, unit: 'MINUTES'){
                                 input "Deploy to Production?"}
-                                bat 'mvn package deploy -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=%APP_NAME%-prod'
+                            bat 'mvn package deploy -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=%APP_NAME%-prod -Djar.name=%APP% -Dmule.artifact=%WORKSPACE%\\target\\%APP%-mule-application.jar'
                         }
                         else  {
                             echo "Branch not expected" 
