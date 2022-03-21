@@ -26,7 +26,7 @@ pipeline {
         steps{
             script{
                 if("SUCCESS".equals(currentBuild.previousBuild.result)){
-                    bat 'COPY %WORKSPACE%\\target\\*.jar C:\\zatch\\zzz /Y'
+                    bat 'COPY %WORKSPACE%\\target\\*.jar C:\\gagan\\target /Y'
                 }
             }
         }
