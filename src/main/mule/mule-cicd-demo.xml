@@ -17,7 +17,7 @@ output application/json
 ---
 {
     "statusCode": 200,
-    "message": "Success",
+    "messages": "Success",
     "country": attributes.queryParams.country
 }]]></ee:set-payload>
 			</ee:message>
