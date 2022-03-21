@@ -8,13 +8,6 @@ pipeline {
 			
 	}
   stages {
-	
-    stage('Run CI?') {
-                steps {
-                    scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
-                }
-            }
-	 
 	  
     stage('Build Application') {
 			steps {
