@@ -13,7 +13,7 @@ pipeline {
       agent any
       steps {
         script {
-          if (bat(script: ''' git log -1 --pretty=\%B | findstr "[skip ci]" ''', returnStatus: true) == 0) {
+          if (bat(script: "git log -1 --pretty=%B | findstr \"[skip ci]\"", returnStatus: true) == 0) {
             currentBuild.result = 'NOT_BUILT'
             error 'Aborting because commit message contains [skip ci]'
           }
