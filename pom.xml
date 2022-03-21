@@ -6,7 +6,7 @@
 
 	<groupId>7f1598f2-2207-439c-b54b-ca89a951565d</groupId>
 	<artifactId>mule-cicd-demo</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
 
 	<name>mule-cicd-demo</name>
@@ -20,6 +20,7 @@
 	</properties>
 
 	<build>
+		<finalName>${jar.name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -54,6 +55,16 @@
 		</plugins>
 	</build>
 	
+	<distributionManagement>
+		<repository>
+		    <uniqueVersion>false</uniqueVersion>
+		    <id>exchange-server</id>
+		    <name>Demos Repository</name>
+		    <url>https://maven.anypoint.mulesoft.com/api/v1/organizations/${project.groupId}/maven</url>
+		    <layout>default</layout>
+		</repository>
+	</distributionManagement>
+
 	<distributionManagement>
 		<repository>
 		    <uniqueVersion>false</uniqueVersion>
