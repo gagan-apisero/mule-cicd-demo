@@ -1,3 +1,4 @@
+def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('CST'))
 pipeline {
   agent any
   environment {
@@ -13,7 +14,7 @@ pipeline {
 					env.GIT_COMMENT = (stdout.readLines().drop(1).join("\n"))
 				}
 				echo "GIT_COMMIT : '${env.GIT_COMMENT}'" 
-				bat 'mvn clean install -Djar.name=%APP_NAME%-%BUILD_TIMESTAMP%'
+				bat 'mvn clean install -Djar.name=%APP_NAME%-%timeStamp%'
 				
 			}
 		}
@@ -43,11 +44,11 @@ pipeline {
             }
 			steps {
 				script{
-                        if(env.GIT_BRANCH == "dev")  {
+                        if(env.GIT_BRANCH == "develop")  {
                             
                             echo 'Deploying mule project due to the latest code commits in Dev branch…'
                             echo 'Deploying to the Development environment.'
-                            bat 'mvn package deploy -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=%APP_NAME%-dev'
+                            bat 'mvn package deploy -DmuleDeploy -Danypoint.username=%ANYPOINT_CREDENTIALS_USR% -Danypoint.password=%ANYPOINT_CREDENTIALS_PSW% -Danypoint.platform.client_id=%ANYPOINT_CLIENT_ID% -Danypoint.platform.client_secret=%ANYPOINT_CLIENT_SECRET% -Danypoint.env=Sandbox -Danypoint.region=us-east-1 -Danypoint.workers=1 -Danypoint.name=%APP_NAME%-develop'
                         }
                         
                         else if(env.GIT_BRANCH == "qa")  {
