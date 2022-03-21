@@ -14,7 +14,7 @@ pipeline {
 					env.GIT_COMMENT = (stdout.readLines().drop(1).join("\n"))
 				}
 				echo "GIT_COMMIT : '${env.GIT_COMMENT}'" 
-				bat 'mvn clean install -Djar.name=%APP_NAME%'
+				bat 'mvn clean package -Djar.name=%APP_NAME%'
 				
 			}
 		}
