@@ -43,7 +43,6 @@ pipeline {
             }
 			steps {
 				script{
-                    if("SUCCESS".equals(currentBuild.previousBuild.result)){
                         if(env.GIT_BRANCH == "develop")  {
                             
                             echo 'Deploying mule project due to the latest code commits in Dev branch…'
@@ -79,7 +78,7 @@ pipeline {
                         else  {
                             echo "Branch not expected" 
                         }
-                    }
+                    
 				}
 			}
 		}
