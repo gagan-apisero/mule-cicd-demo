@@ -4,7 +4,7 @@ pipeline {
 			//this is the anypoint userID
 			APP_NAME = 'jenkinsCICDTestAPI'
 			
-		}
+	}
   stages {
     stage('Build Application') {
 			steps {
@@ -22,7 +22,7 @@ pipeline {
         steps{
             script{
                 if("SUCCESS".equals(currentBuild.previousBuild.result)){
-                    bat 'COPY "%WORKSPACE%\\target\\*.jar" "C:\\zatch\\zzz" /Y'
+                    bat 'COPY %WORKSPACE%\\target\\*.jar C:\\zatch\\zzz /Y'
                 }
             }
         }
@@ -33,7 +33,7 @@ pipeline {
         echo 'Munit test case'
       }
     }
-  }
+
   stage('Deploy CloudHub') {
                 environment {
                     ANYPOINT_CREDENTIALS = credentials('anypoint.credentials')
@@ -84,6 +84,7 @@ pipeline {
 			}
 		}
 	}
+    }
 	post {
 		failure {
 			mail to: 'gagan.verma@apisero.com',
