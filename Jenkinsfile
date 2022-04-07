@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker{
-      image 'jlrigau/maven-git'
+      image 'maven:3.6.0-jdk-11-slim'
       args '-v $HOME/.m2:/root/.m2 ' +
            '-v C:\\Program Files\\Docker\\Docker\\resources\\bin '
     }
