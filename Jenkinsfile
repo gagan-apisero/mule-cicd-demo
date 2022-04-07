@@ -2,8 +2,8 @@ pipeline {
   agent {
     docker{
       image 'jlrigau/maven-git'
-      args '-v $HOME/.m2:/root/.m2' +
-           '-v C:\\Program Files\\Docker\\Docker\\resources\\bin'
+      args '-v $HOME/.m2:/root/.m2 ' +
+           '-v C:\\Program Files\\Docker\\Docker\\resources\\bin '
     }
   }
   stages {
