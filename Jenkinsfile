@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker{
-      label 'windows'
+      label 'master'
       image 'maven:3.6.0-jdk-11-slim'
       registryUrl 'http://hub.docker.com'
 //       args '-v C:\\Program Files\\Docker\\Docker\\resources\\bin '
