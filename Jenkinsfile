@@ -1,6 +1,7 @@
 pipeline {
   agent {
     docker{
+      label 'windows'
       image 'maven:3.6.0-jdk-11-slim'
       registryUrl 'http://hub.docker.com'
 //       args '-v C:\\Program Files\\Docker\\Docker\\resources\\bin '
@@ -9,9 +10,9 @@ pipeline {
   stages {
     stage('Build Application') {
       steps {
-        sh 'git --version'
-        sh 'mvn --version'
-        sh 'mvn clean install'
+        bat 'git --version'
+        bat 'mvn --version'
+        bat 'mvn clean install'
       }
     }
     stage('Munit test') {
