@@ -3,8 +3,7 @@ pipeline {
     docker{
       image 'maven:3.6.0-jdk-11-slim'
       registryUrl 'http://hub.docker.com'
-      args '-v $HOME/.m2:/root/.m2 ' +
-           '-v C:\\Program Files\\Docker\\Docker\\resources\\bin '
+//       args '-v C:\\Program Files\\Docker\\Docker\\resources\\bin '
     }
   }
   stages {
