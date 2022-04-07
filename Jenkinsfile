@@ -1,10 +1,10 @@
 pipeline {
   agent {
     docker{
-      label 'master'
+//       label 'master'
       image 'maven:3.6.0-jdk-11-slim'
       registryUrl 'http://hub.docker.com'
-//       args '-v C:\\Program Files\\Docker\\Docker\\resources\\bin '
+      args '-v tcp://127.0.0.1:2376'
     }
   }
   stages {
