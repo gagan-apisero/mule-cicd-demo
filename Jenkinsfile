@@ -9,9 +9,9 @@ pipeline {
   stages {
     stage('Build Application') {
       steps {
-        bat 'git --version'
-        bat 'mvn --version'
-        bat 'mvn clean install'
+        sh 'git --version'
+        sh 'mvn --version'
+        sh 'mvn clean install'
       }
     }
     stage('Munit test') {
