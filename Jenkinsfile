@@ -1,20 +1,17 @@
-def mvn_project_version(pom_file) {
-    return sh(
-        script: """mvn -N -f $pom_file org.apache.maven.plugins:maven-help-plugin:evaluate -Dexpression=project.version |
-                   grep -Ev '(^\\s*\\[|Download\\w+:)'""",
-        returnStdout: true).trim()
-}
+def project = new XmlSlurper().parse(new File("pom.xml"))
+def pomv = project.version.toString()
+
 pipeline {
   agent any
    environment{
-        VERSION = mvn_project_version("pom.xml")
+        VERSION = "1.1.1"
     }
   stages {
     stage('Pre Stage'){
       steps {
 //         pom_version = readMavenPom().getVersion()
            echo "${env.GIT_BRANCH}"
-           echo "pom_version= ${VERSION}"
+           echo "pom_version= ${pomv}"
 //         echo "pom_version=${pom_version}" 
       }
     }
