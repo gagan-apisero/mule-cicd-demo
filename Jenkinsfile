@@ -10,7 +10,6 @@ pipeline {
     }
     stage('Build Application') {
       steps {
-        TAG_SELECTOR = readMavenPom().getVersion()
         sh 'git --version'
         sh 'mvn --version'
         sh 'mvn clean install'
