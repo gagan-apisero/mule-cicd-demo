@@ -1,12 +1,15 @@
 // def pom_version = "UNINTIALIZED"
 pipeline {
   agent any
+   environment{
+        VERSION = readMavenPom().getVersion()
+    }
   stages {
     stage('Pre Stage'){
       steps {
 //         pom_version = readMavenPom().getVersion()
            echo "${env.GIT_BRANCH}"
-           echo "pom_version= ${POM_VERSION}"
+           echo "pom_version= ${VERSION}"
 //         echo "pom_version=${pom_version}" 
       }
     }
