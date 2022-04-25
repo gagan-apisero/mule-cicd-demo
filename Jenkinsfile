@@ -1,12 +1,12 @@
-def TAG_SELECTOR = "UNINTIALIZED"
+def pom_version = "UNINTIALIZED"
 pipeline {
   agent any
   stages {
     stage('Pre Stage'){
       steps{
-        TAG_SELECTOR = readMavenPom().getVersion()
+        pom_version = readMavenPom().getVersion()
       }
-      echo("TAG_SELECTOR=${TAG_SELECTOR}")
+      echo("pom_version=${pom_version}")
     }
     stage('Build Application') {
       steps {
