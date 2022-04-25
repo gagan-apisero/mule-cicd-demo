@@ -4,8 +4,9 @@ pipeline {
   stages {
     stage('Pre Stage'){
       steps {
-        pom_version = readMavenPom().getVersion()
-        echo "pom_version=${pom_version}" 
+//         pom_version = readMavenPom().getVersion()
+           echo "pom_version= ${POM_VERSION}"
+//         echo "pom_version=${pom_version}" 
       }
     }
     stage('Build Application') {
