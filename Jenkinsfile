@@ -1,6 +1,3 @@
-def project = new XmlSlurper().parse(new File("pom.xml"))
-def pomv = project.version.toString()
-
 pipeline {
   agent any
    environment{
