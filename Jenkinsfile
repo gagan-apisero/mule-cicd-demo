@@ -1,14 +1,16 @@
+def TAG_SELECTOR = "UNINTIALIZED"
 pipeline {
-  agent {
-    docker{
-//       label 'master'
-      image 'maven:3.6.0-jdk-11-slim'
-//       registryUrl 'http://hub.docker.com'
-    }
-  }
+  agent any
   stages {
+    stage('Pre Stage'){
+      steps{
+        TAG_SELECTOR = readMavenPom().getVersion()
+      }
+      echo("TAG_SELECTOR=${TAG_SELECTOR}")
+    }
     stage('Build Application') {
       steps {
+        TAG_SELECTOR = readMavenPom().getVersion()
         sh 'git --version'
         sh 'mvn --version'
         sh 'mvn clean install'
