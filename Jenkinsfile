@@ -1,4 +1,4 @@
-def pom_version = "UNINTIALIZED"
+// def pom_version = "UNINTIALIZED"
 pipeline {
   agent any
   stages {
