@@ -5,15 +5,16 @@ pipeline {
     stage('Pre Stage'){
       steps {
 //         pom_version = readMavenPom().getVersion()
+           echo "${env.GIT_BRANCH}"
            echo "pom_version= ${POM_VERSION}"
 //         echo "pom_version=${pom_version}" 
       }
     }
     stage('Build Application') {
       steps {
-        sh 'git --version'
-        sh 'mvn --version'
-        sh 'mvn clean install'
+        bat 'git --version'
+        bat 'mvn --version'
+        bat 'mvn clean install'
       }
     }
     stage('Munit test') {
