@@ -3,10 +3,10 @@ pipeline {
   agent any
   stages {
     stage('Pre Stage'){
-      steps{
+      steps {
         pom_version = readMavenPom().getVersion()
       }
-      echo("pom_version=${pom_version}")
+      echo "pom_version=${pom_version}" 
     }
     stage('Build Application') {
       steps {
