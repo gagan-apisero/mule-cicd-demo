@@ -1,8 +1,13 @@
-// def pom_version = "UNINTIALIZED"
+def mvn_project_version(pom_file) {
+    return sh(
+        script: """mvn -N -f $pom_file org.apache.maven.plugins:maven-help-plugin:evaluate -Dexpression=project.version |
+                   grep -Ev '(^\\s*\\[|Download\\w+:)'""",
+        returnStdout: true).trim()
+}
 pipeline {
   agent any
    environment{
-        VERSION = readMavenPom().getVersion()
+        VERSION = mvn_project_version("pom.xml")
     }
   stages {
     stage('Pre Stage'){
